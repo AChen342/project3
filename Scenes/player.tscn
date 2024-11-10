@@ -1,0 +1,104 @@
+[gd_scene load_steps=13 format=3 uid="uid://bisqse8cu3j0"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_ju4pd"]
+[ext_resource type="PackedScene" uid="uid://7e1bftssgle" path="res://Scenes/bullet.tscn" id="2_htak1"]
+[ext_resource type="Texture2D" uid="uid://bvhepwj2ghl8" path="res://Sprites/player.png" id="2_ym1t7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uuxp"]
+atlas = ExtResource("2_ym1t7")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vtlv"]
+atlas = ExtResource("2_ym1t7")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6inqu"]
+atlas = ExtResource("2_ym1t7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lhbm"]
+atlas = ExtResource("2_ym1t7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whm88"]
+atlas = ExtResource("2_ym1t7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cq1x"]
+atlas = ExtResource("2_ym1t7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31haw"]
+atlas = ExtResource("2_ym1t7")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq0lt"]
+atlas = ExtResource("2_ym1t7")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yt7gj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uuxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vtlv")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6inqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lhbm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whm88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cq1x")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31haw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dq0lt")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ju4pd")
+bullet_scene = ExtResource("2_htak1")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_yt7gj")
+animation = &"down"
+
+[node name="hitbox" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-3, -27, 0, -27, 30, 18, 30, 27, -33, 27, -33, 18)
+
+[node name="gun" type="Marker2D" parent="."]
+position = Vector2(-1, -33)
+
+[node name="cooldown" type="Timer" parent="gun"]
+
+[connection signal="timeout" from="gun/cooldown" to="." method="_on_cooldown_timeout"]
