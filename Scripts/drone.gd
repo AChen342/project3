@@ -1,5 +1,7 @@
 extends Enemy
 
+class_name Drone
+
 var frequency : float
 var amplitude : float
 var time : float

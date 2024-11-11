@@ -1,24 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://1ljwa24kyksc"]
+[gd_scene load_steps=6 format=3 uid="uid://bg184xetaqc5h"]
 
 [ext_resource type="Texture2D" uid="uid://cq4wktc3ama56" path="res://Sprites/enemy_jet.png" id="1_jpjw7"]
 [ext_resource type="Script" path="res://Scripts/enemy_jet.gd" id="1_o8mwc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvrrc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7uhr"]
 atlas = ExtResource("1_jpjw7")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ckus0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pupt"]
 atlas = ExtResource("1_jpjw7")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_x48ut"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8udqi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cvrrc")
+"texture": SubResource("AtlasTexture_l7uhr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ckus0")
+"texture": SubResource("AtlasTexture_7pupt")
 }],
 "loop": true,
 "name": &"idle",
@@ -30,10 +30,9 @@ script = ExtResource("1_o8mwc")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(10, -17)
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_x48ut")
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_8udqi")
 animation = &"idle"
 
 [node name="hitbox" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(7, -44, 10, -44, 43, 4, 43, 10, -26, 10, -26, 4)
+polygon = PackedVector2Array(-2, -23, 0, -23, 27, 18, 27, 21, -30, 22, -30, 18)
