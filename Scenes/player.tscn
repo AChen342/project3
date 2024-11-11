@@ -83,9 +83,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_ju4pd")
 bullet_scene = ExtResource("2_htak1")
+metadata/_edit_group_ = true
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -94,7 +95,7 @@ sprite_frames = SubResource("SpriteFrames_yt7gj")
 animation = &"down"
 
 [node name="hitbox" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-3, -27, 0, -27, 30, 18, 30, 27, -33, 27, -33, 18)
+polygon = PackedVector2Array(-1, -23, 30, 18, 30, 27, -33, 27, -33, 18)
 
 [node name="gun" type="Marker2D" parent="."]
 position = Vector2(-1, -33)

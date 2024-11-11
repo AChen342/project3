@@ -60,9 +60,9 @@ func player_movement(delta):
 	position += velocity * delta
 	
 	# Makes sure sprite doesn't leave screen
-	var texture = $animation.get_frame()
-	position.x = clamp(position.x, 32, screen_size.x - 32)
-	position.y = clamp(position.y, screen_size.y / 2, screen_size.y - 50)
+	var texture_size = $animation.get_sprite_frames().get_frame_texture("idle", 0).get_size()
+	position.x = clamp(position.x, texture_size.x, screen_size.x - texture_size.x)
+	position.y = clamp(position.y, screen_size.y / 4, screen_size.y - texture_size.y)
 	
 func _on_cooldown_timeout() -> void:
 	if Input.is_action_pressed("shoot"):
