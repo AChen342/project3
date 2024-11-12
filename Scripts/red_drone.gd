@@ -10,10 +10,6 @@ func _physics_process(delta: float) -> void:
     
     on_collision(delta)
 	
-func on_collision(delta):
-    var collision = move_and_collide(velocity * delta)
-    if collision:
-        on_destroy()
 
 func follow_player(delta):
     var player_pos = get_parent().get_node("Player").position

@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://pivfh0fvgthg"]
+
+[ext_resource type="Texture2D" uid="uid://jl43gn6dy6d3" path="res://Sprites/red_plane.png" id="1_6ogv7"]
+[ext_resource type="Script" path="res://Scripts/red_plane.gd" id="1_yh3qy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ckak"]
+radius = 30.6757
+
+[sub_resource type="Gradient" id="Gradient_tw42m"]
+offsets = PackedFloat32Array(0, 0.467213, 1)
+colors = PackedColorArray(0.956863, 0.92549, 0.176471, 1, 0.839216, 0.364706, 0.0666667, 1, 1, 0.141176, 0.133333, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_524sd"]
+gradient = SubResource("Gradient_tw42m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5xyo3"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+angle_min = 154.8
+angle_max = 154.8
+gravity = Vector3(0, -98, 0)
+scale_min = 5.0
+scale_max = 5.0
+color_ramp = SubResource("GradientTexture1D_524sd")
+
+[node name="red_plane" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_yh3qy")
+metadata/_edit_group_ = true
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_6ogv7")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3ckak")
+
+[node name="trail" type="GPUParticles2D" parent="."]
+position = Vector2(-1, 34)
+process_material = SubResource("ParticleProcessMaterial_5xyo3")
+
+[node name="twin_guns" type="Node2D" parent="."]
+position = Vector2(-32, -17)
+
+[node name="gun1" type="Marker2D" parent="twin_guns"]
+
+[node name="gun2" type="Marker2D" parent="twin_guns"]
+position = Vector2(61, 1)
+
+[node name="cooldown" type="Timer" parent="twin_guns"]

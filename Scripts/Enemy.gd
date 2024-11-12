@@ -17,13 +17,30 @@ func movement(delta):
 	
 func take_damage(damage):
 	health -= damage
-	
+
+func on_collision(delta):
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		var body = collision.get_collider()
+		if body.is_in_group("player"):
+			on_destroy()
+
+func get_texture_size():
+	var texture
+	if has_node("animation"):
+		texture = $animation.get_sprite_frames().get_frame_texture("idle", 0)
+		return texture.get_size()
+	elif has_node("sprite"):
+		texture = $sprite.get_texture()
+		return texture.get_size()
+	else:
+		print_debug("Enemy object missing texture (missing sprite or animation node)")
+
 func _process(delta: float) -> void:
 	if health <= 0:
 		on_destroy()
-		
-
-	var texture_size = $animation.get_sprite_frames().get_frame_texture("idle", 0).get_size()
+	
+	var texture_size = get_texture_size()
 	if position.y >= (screen_size.y + texture_size.y):
 		queue_free()
 
@@ -36,5 +53,6 @@ func on_destroy():
 
 func _physics_process(delta: float) -> void:
 	movement(delta)
+	on_collision(delta)
 
 

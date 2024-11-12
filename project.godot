@@ -24,6 +24,7 @@ window/size/viewport_height=720
 
 enemies=""
 player=""
+enemy_projectile=""
 
 [input]
 
