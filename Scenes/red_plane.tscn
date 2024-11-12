@@ -50,3 +50,5 @@ position = Vector2(-32, -17)
 position = Vector2(61, 1)
 
 [node name="cooldown" type="Timer" parent="twin_guns"]
+
+[connection signal="timeout" from="twin_guns/cooldown" to="." method="_on_cooldown_timeout"]

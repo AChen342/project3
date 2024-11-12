@@ -6,7 +6,7 @@ var screen_size
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	$animation.play("idle")
-	$gun/cooldown.set_wait_time(.5)
+	$gun/cooldown.set_wait_time(.2)
 
 func _physics_process(delta: float) -> void:
 	player_controls(delta)
