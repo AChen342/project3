@@ -29,7 +29,7 @@ animations = [{
 size = Vector2(24, 24)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hyqp0"]
-radius = 70.2282
+radius = 164.368
 
 [node name="red_drone" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_rk3kp")

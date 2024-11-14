@@ -1,15 +1,27 @@
 extends CharacterBody2D
 const SPEED = 300.0
 var screen_size
-@export var bullet_scene : PackedScene
+var health
+@onready var explosion = preload("res://Scenes/explosion.tscn")
+@onready var bullet_scene = preload("res://Scenes/bullet.tscn")
 
 func _ready() -> void:
+	health = 100
 	screen_size = get_viewport_rect().size
 	$animation.play("idle")
-	$gun/cooldown.set_wait_time(.2)
+	$gun/cooldown.set_wait_time(.3)
 
 func _physics_process(delta: float) -> void:
 	player_controls(delta)
+	if health <= 0:
+		on_destroy()
+
+func on_destroy():
+	var explode = explosion.instantiate()
+	explode.global_position = global_position
+	explode.play()
+	get_parent().add_child(explode)
+	queue_free()
 
 func player_controls(delta):
 	player_movement(delta)
@@ -67,3 +79,7 @@ func player_movement(delta):
 func _on_cooldown_timeout() -> void:
 	if Input.is_action_pressed("shoot"):
 		create_bullet()
+	
+func player_damage():
+	$animation/AnimationPlayer.play("player_hurt")
+	health -= 10

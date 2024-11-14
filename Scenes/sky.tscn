@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://caj6drf3ahn3p"]
+
+[ext_resource type="Texture2D" uid="uid://cktyqj8oqrspu" path="res://Sprites/sky.png" id="1_rmd2x"]
+[ext_resource type="Script" path="res://Scripts/sky.gd" id="1_t6knn"]
+
+[node name="sky" type="ParallaxBackground"]
+layer = 100
+script = ExtResource("1_t6knn")
+
+[node name="layer1" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(0, 720)
+
+[node name="texture" type="Sprite2D" parent="layer1"]
+position = Vector2(243, 361)
+texture = ExtResource("1_rmd2x")

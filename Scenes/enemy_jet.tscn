@@ -26,6 +26,7 @@ animations = [{
 }]
 
 [node name="enemy_jet" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
 script = ExtResource("1_o8mwc")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]

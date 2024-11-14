@@ -5,7 +5,7 @@ var bullet_scene = preload("res://Scenes/bullet.tscn")
 func _ready() -> void:
 	$twin_guns/cooldown.wait_time = 4
 	health = 30
-	speed = 50
+	speed = 70
 
 func shoot():
 	var bullet1 = bullet_scene.instantiate()

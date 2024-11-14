@@ -23,6 +23,8 @@ func on_collision(delta):
 	if collision:
 		var body = collision.get_collider()
 		if body.is_in_group("player"):
+			if body.has_method("player_damage"):
+				body.player_damage()
 			on_destroy()
 
 func get_texture_size():
