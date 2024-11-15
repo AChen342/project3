@@ -9,7 +9,7 @@ func _ready() -> void:
 	health = 100
 	screen_size = get_viewport_rect().size
 	$animation.play("idle")
-	$gun/cooldown.set_wait_time(.3)
+	$gun/cooldown.set_wait_time(.5)
 
 func _physics_process(delta: float) -> void:
 	player_controls(delta)
@@ -80,6 +80,7 @@ func _on_cooldown_timeout() -> void:
 	if Input.is_action_pressed("shoot"):
 		create_bullet()
 	
-func player_damage():
+func player_damage(damage):
 	$animation/AnimationPlayer.play("player_hurt")
-	health -= 10
+	health -= damage
+	print_debug("Player health: " + str(health))

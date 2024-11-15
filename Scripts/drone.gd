@@ -12,8 +12,9 @@ func _ready() -> void:
 	time = 0
 	health = 5
 	speed = 10
+	collision_damage = 5
 	$animation.play("idle")
-	$animation.flip_v = true
+	$animation.rotation_degrees = -90
 	
 func movement(delta):
 	time += speed * delta

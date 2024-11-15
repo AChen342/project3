@@ -31,7 +31,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies") and not is_in_group("enemy_projectile"):
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
-		on_destroy()
 		
 	elif body.is_in_group("player") and is_in_group("enemy_projectile"):
-		on_destroy()
+		if body.has_method("player_damage"):
+			body.player_damage(5)
+	
+	on_destroy()

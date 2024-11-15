@@ -26,14 +26,16 @@ animations = [{
 }]
 
 [node name="enemy_jet" type="CharacterBody2D" groups=["enemies"]]
-collision_layer = 2
 script = ExtResource("1_o8mwc")
+metadata/_edit_group_ = true
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+rotation = -1.5708
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_8udqi")
 animation = &"idle"
 
 [node name="hitbox" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-2, -23, 0, -23, 27, 18, 27, 21, -30, 22, -30, 18)
+rotation = -1.55821
+polygon = PackedVector2Array(-1.27679, -21.9857, 28.2243, 17.6462, 25.3504, 27.6832, 0.251698, 19.9984, -26.6581, 27.3377, -29.7837, 17.3762)

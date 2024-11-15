@@ -6,11 +6,12 @@ var speed: float
 var health: float
 var direction: Vector2
 var explosion_animation = preload("res://Scenes/explosion.tscn")
+@onready var collision_damage = 10
 @onready var screen_size = get_viewport_rect().size
 
 func set_direction(enemyDirection):
 	direction = enemyDirection
-	rotation_degrees = rad_to_deg(global_position.angle_to_point(-(global_position + enemyDirection)))
+	rotation_degrees = rad_to_deg(global_position.angle_to_point(global_position + enemyDirection))
 
 func movement(delta):
 	global_position += direction * speed * delta
@@ -24,7 +25,7 @@ func on_collision(delta):
 		var body = collision.get_collider()
 		if body.is_in_group("player"):
 			if body.has_method("player_damage"):
-				body.player_damage()
+				body.player_damage(collision_damage)
 			on_destroy()
 
 func get_texture_size():
