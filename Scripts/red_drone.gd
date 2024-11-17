@@ -6,10 +6,9 @@ func _physics_process(delta: float) -> void:
     if follow_player_flag:
         follow_player(delta)
     else:
-        movement(delta)
+        _movement(delta)
     
-    on_collision(delta)
-	
+    _on_collision(delta)
 
 func follow_player(delta):
     var player_pos = get_parent().get_node("Player").position

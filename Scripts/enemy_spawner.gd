@@ -1,27 +1,67 @@
 extends Path2D
 
-var enemies : Dictionary
-var rng
+@onready var enemies = {
+		"enemy_jet" : {"spawnable" : false, "scene" : preload("res://Scenes/enemy_jet.tscn"), "weight" : 100},
+		"blue_drone" : {"spawnable" : false, "scene" : preload("res://Scenes/blue_drone.tscn"), "weight" : 50},
+		"red_drone" : {"spawnable" : false,"scene" : preload("res://Scenes/red_drone.tscn"), "weight" : 50},
+		"red_plane" : {"spawnable": true, "scene" : preload("res://Scenes/red_plane.tscn"), "weight" : 25}
+}
+var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
-	rng = RandomNumberGenerator.new()
 	$spawn_timer.wait_time = 4
-	enemies = {
-		"enemy_jet" : preload("res://Scenes/enemy_jet.tscn"),
-		"blue_drone": preload("res://Scenes/blue_drone.tscn"),
-		"red_drone": preload("res://Scenes/red_drone.tscn"),
-		"red_plane": preload("res://Scenes/red_plane.tscn")
-	}
-	spawn_wave()
+	_spawn_wave()
 
-func spawn_n_enemies(spawn_count):
-	var spawn_locations = []
+func _on_spawn_timer_timeout() -> void:
+	_spawn_wave()
+
+func _calculate_total_weights():
+	var total_weight = 0
+
+	for enemy in enemies.values():
+		if enemy["spawnable"]:
+			total_weight += enemy["weight"]
 	
+	return total_weight
+
+func _make_spawnable(enemy_name):
+	enemies[enemy_name]["spawnable"] = true
+
+func _update_weights():
+	var total_weight = _calculate_total_weights()
+	var num_of_enemies = enemies.size()
+	var avg_weight = total_weight / num_of_enemies
+	
+	for enemy in enemies.values():
+		if enemy["weight"] <= avg_weight:
+			#Weight to spawn strong enemies increases by .5
+			enemy["weight"] += (enemy["weight"] * 0.5)
+		else:
+			#Weight to spawn weak enemies decrease by .2
+			enemy["weight"] -= (enemy["weight"] * 0.2)
+
+func _select_enemy():
+	var total_weight = _calculate_total_weights()
+
+	var random_weight = rng.randi_range(0, total_weight - 1)
+	for enemy_name in enemies.keys():
+		if enemies[enemy_name]["spawnable"]:
+			random_weight -= enemies[enemy_name]["weight"]
+			if random_weight < 0:
+				return enemy_name
+
+func _spawn_n_enemies(spawn_count):
+	var spawn_locations = []
+	var enemy_name = _select_enemy()
+	var enemy_scene = enemies[enemy_name]["scene"]
+
 	for i in range(spawn_count):
 		var enemy_texture
 		var spawn_attempts = 0
 		var valid_pos = false
-		var enemy = (enemies.get("red_plane")).instantiate()
+		var enemy = enemy_scene.instantiate()
+
+		#grab enemy texture size
 		if enemy.has_node("animation"):
 			enemy_texture = enemy.get_node("animation").get_sprite_frames().get_frame_texture("idle", 0)
 		else:
@@ -29,7 +69,7 @@ func spawn_n_enemies(spawn_count):
 		var spawn_location = $spawner_path
 
 		#Check if there is already enemy spawned at this position		
-		while !valid_pos and spawn_attempts < 4:
+		while !valid_pos and spawn_attempts < 10:
 			spawn_location.progress_ratio = randf()
 			valid_pos = true	
 			for pos in spawn_locations:
@@ -45,10 +85,7 @@ func spawn_n_enemies(spawn_count):
 			spawn_locations.append(enemy.global_position)
 			get_parent().add_child.call_deferred(enemy)
 
-func spawn_wave():
-	var spawn_count = rng.randi_range(1, 5)
-	spawn_n_enemies(spawn_count)
+func _spawn_wave():
+	var spawn_count = rng.randi_range(3, 5)
+	_spawn_n_enemies(spawn_count)
 	$spawn_timer.start()
-
-func _on_spawn_timer_timeout() -> void:
-	spawn_wave()
