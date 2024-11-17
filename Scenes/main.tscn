@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://ib6312sre04w"]
+[gd_scene load_steps=7 format=3 uid="uid://ib6312sre04w"]
 
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_k3ws3"]
 [ext_resource type="PackedScene" uid="uid://be1i6fehypbcr" path="res://Scenes/ground.tscn" id="1_yxe77"]
 [ext_resource type="PackedScene" uid="uid://bisqse8cu3j0" path="res://Scenes/player.tscn" id="2_0rp88"]
 [ext_resource type="PackedScene" uid="uid://dj2hnhmd7sm41" path="res://Scenes/enemy_spawner.tscn" id="3_4185n"]
 [ext_resource type="PackedScene" uid="uid://caj6drf3ahn3p" path="res://Scenes/sky.tscn" id="4_w7ikf"]
+[ext_resource type="PackedScene" uid="uid://db71podd0qxlo" path="res://Scenes/gui.tscn" id="6_111in"]
 
 [node name="main" type="Node2D"]
+script = ExtResource("1_k3ws3")
 
 [node name="Player" parent="." instance=ExtResource("2_0rp88")]
 position = Vector2(240, 650)
@@ -17,3 +20,7 @@ position = Vector2(240, 650)
 [node name="sky" parent="background" instance=ExtResource("4_w7ikf")]
 
 [node name="ground" parent="background" instance=ExtResource("1_yxe77")]
+
+[node name="user_interface" parent="." instance=ExtResource("6_111in")]
+
+[connection signal="add_points" from="." to="." method="_on_add_points"]

@@ -1,12 +1,12 @@
-extends Enemy
-
 class_name Drone
+extends Enemy
 
 var frequency : float
 var amplitude : float
 var time : float
 
 func _ready() -> void:
+	points = 50
 	frequency = 1
 	amplitude = 200
 	time = 0
@@ -16,7 +16,7 @@ func _ready() -> void:
 	$animation.play("idle")
 	$animation.rotation_degrees = -90
 	
-func movement(delta):
+func _movement(delta):
 	time += speed * delta
 	var offset_x = amplitude * sin(frequency * time)
 	

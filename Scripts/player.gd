@@ -83,4 +83,3 @@ func _on_cooldown_timeout() -> void:
 func player_damage(damage):
 	$animation/AnimationPlayer.play("player_hurt")
 	health -= damage
-	print_debug("Player health: " + str(health))

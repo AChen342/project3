@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bg184xetaqc5h"]
+[gd_scene load_steps=7 format=3 uid="uid://bg184xetaqc5h"]
 
 [ext_resource type="Texture2D" uid="uid://cq4wktc3ama56" path="res://Sprites/enemy_jet.png" id="1_jpjw7"]
 [ext_resource type="Script" path="res://Scripts/enemy_jet.gd" id="1_o8mwc"]
@@ -25,17 +25,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vyjqq"]
+radius = 15.0
+
 [node name="enemy_jet" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_o8mwc")
 metadata/_edit_group_ = true
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-rotation = -1.5708
+rotation = -4.71239
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_8udqi")
 animation = &"idle"
 
-[node name="hitbox" type="CollisionPolygon2D" parent="."]
-rotation = -1.55821
-polygon = PackedVector2Array(-1.27679, -21.9857, 28.2243, 17.6462, 25.3504, 27.6832, 0.251698, 19.9984, -26.6581, 27.3377, -29.7837, 17.3762)
+[node name="hitbox" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_vyjqq")
