@@ -5,14 +5,16 @@ var frequency : float
 var amplitude : float
 var time : float
 
-func _ready() -> void:
+func _init() -> void:
 	points = 50
-	frequency = rng.randf_range(0.5, 1)
+	frequency = rng.randf_range(0.5, 5)
 	amplitude = rng.randi_range(100, 200)
 	time = 0
 	health = 5
 	speed = 10
 	collision_damage = 5
+
+func _ready() -> void:
 	$animation.play("idle")
 	$animation.rotation_degrees = -90
 	

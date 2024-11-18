@@ -1,12 +1,15 @@
 extends CharacterBody2D
 const SPEED = 300.0
 var screen_size
-var health
+var health : float
+@onready var gui = get_parent().get_node("user_interface").get_node("gui")
 @onready var explosion = preload("res://Scenes/explosion.tscn")
 @onready var bullet_scene = preload("res://Scenes/player_bullet.tscn")
 
-func _ready() -> void:
+func _init() -> void:
 	health = 100
+
+func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	$animation.play("idle")
 	$gun/cooldown.set_wait_time(.3)
@@ -15,6 +18,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	player_controls(delta)
 	if health <= 0:
+		gui.emit_signal("pilot_death")
 		on_destroy()
 
 func on_destroy():
@@ -79,5 +83,6 @@ func _on_cooldown_timeout() -> void:
 	player_shoot()
 	
 func player_damage(damage):
-	$animation/AnimationPlayer.play("player_hurt")
+	gui.emit_signal("shake_pilot")
 	health -= damage
+	print_debug("Player health %d" % health)

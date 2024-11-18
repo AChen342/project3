@@ -44,3 +44,7 @@ animation = &"idle"
 position = Vector2(-10, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1042w")
+
+[node name="wanderTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="wanderTimer" to="." method="_on_wander_timer_timeout"]
