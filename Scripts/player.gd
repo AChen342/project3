@@ -3,13 +3,14 @@ const SPEED = 300.0
 var screen_size
 var health
 @onready var explosion = preload("res://Scenes/explosion.tscn")
-@onready var bullet_scene = preload("res://Scenes/bullet.tscn")
+@onready var bullet_scene = preload("res://Scenes/player_bullet.tscn")
 
 func _ready() -> void:
 	health = 100
 	screen_size = get_viewport_rect().size
 	$animation.play("idle")
-	$gun/cooldown.set_wait_time(.5)
+	$gun/cooldown.set_wait_time(.3)
+	$gun/cooldown.start()
 
 func _physics_process(delta: float) -> void:
 	player_controls(delta)
@@ -25,12 +26,10 @@ func on_destroy():
 
 func player_controls(delta):
 	player_movement(delta)
-	player_shoot()
 
 func player_shoot():
-	if Input.is_action_pressed("shoot") and $gun/cooldown.is_stopped():
-		create_bullet()
-		$gun/cooldown.start()
+	create_bullet()
+	$gun/cooldown.start()
 
 func create_bullet():
 	var new_bullet = bullet_scene.instantiate()
@@ -77,8 +76,7 @@ func player_movement(delta):
 	position.y = clamp(position.y, screen_size.y / 4, screen_size.y - texture_size.y)
 	
 func _on_cooldown_timeout() -> void:
-	if Input.is_action_pressed("shoot"):
-		create_bullet()
+	player_shoot()
 	
 func player_damage(damage):
 	$animation/AnimationPlayer.play("player_hurt")

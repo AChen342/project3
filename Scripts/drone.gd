@@ -7,8 +7,8 @@ var time : float
 
 func _ready() -> void:
 	points = 50
-	frequency = 1
-	amplitude = 200
+	frequency = rng.randf_range(0.5, 1)
+	amplitude = rng.randi_range(100, 200)
 	time = 0
 	health = 5
 	speed = 10

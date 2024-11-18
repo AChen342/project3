@@ -1,10 +1,12 @@
 extends Path2D
 
+signal update_weights
+signal unlock_new_enemy(enemy_name)
 @onready var enemies = {
-		"enemy_jet" : {"spawnable" : false, "scene" : preload("res://Scenes/enemy_jet.tscn"), "weight" : 100},
+		"enemy_jet" : {"spawnable" : true, "scene" : preload("res://Scenes/enemy_jet.tscn"), "weight" : 100},
 		"blue_drone" : {"spawnable" : false, "scene" : preload("res://Scenes/blue_drone.tscn"), "weight" : 50},
 		"red_drone" : {"spawnable" : false,"scene" : preload("res://Scenes/red_drone.tscn"), "weight" : 50},
-		"red_plane" : {"spawnable": true, "scene" : preload("res://Scenes/red_plane.tscn"), "weight" : 25}
+		"red_plane" : {"spawnable": false, "scene" : preload("res://Scenes/red_plane.tscn"), "weight" : 25}
 }
 var rng = RandomNumberGenerator.new()
 
@@ -25,13 +27,14 @@ func _calculate_total_weights():
 	return total_weight
 
 func _make_spawnable(enemy_name):
+	print_debug("unlocking " + str(enemy_name))
 	enemies[enemy_name]["spawnable"] = true
 
 func _update_weights():
 	var total_weight = _calculate_total_weights()
 	var num_of_enemies = enemies.size()
 	var avg_weight = total_weight / num_of_enemies
-	
+
 	for enemy in enemies.values():
 		if enemy["weight"] <= avg_weight:
 			#Weight to spawn strong enemies increases by .5

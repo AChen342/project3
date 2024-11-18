@@ -6,6 +6,7 @@ var health: float
 var direction: Vector2
 var points = 100
 var collision_damage = 10
+var rng = RandomNumberGenerator.new()
 @onready var explosion_animation = preload("res://Scenes/explosion.tscn")
 @onready var screen_size = get_viewport_rect().size
 
