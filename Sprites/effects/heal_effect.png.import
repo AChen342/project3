@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2j5dfx00u2sh"
-path="res://.godot/imported/pilot_dead.png-1d5259e7dba9bedfd208b657585098d9.ctex"
+uid="uid://c4hwbmmjqe36d"
+path="res://.godot/imported/heal_effect.png-6239fb6d81af1904be3bcee9c621e4ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/pilot_dead.png"
-dest_files=["res://.godot/imported/pilot_dead.png-1d5259e7dba9bedfd208b657585098d9.ctex"]
+source_file="res://Sprites/effects/heal_effect.png"
+dest_files=["res://.godot/imported/heal_effect.png-6239fb6d81af1904be3bcee9c621e4ec.ctex"]
 
 [params]
 

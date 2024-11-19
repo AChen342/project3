@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://clcimu302v8f4"]
+
+[ext_resource type="Script" path="res://Scripts/collectible scripts/health_pack.gd" id="1_8vw1d"]
+[ext_resource type="Texture2D" uid="uid://5mmt7n5lp8ni" path="res://Sprites/collectibles/health_pack.png" id="1_ppefb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5iai"]
+size = Vector2(22, 22)
+
+[sub_resource type="Animation" id="Animation_7ynfg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_fs3kh"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(2, 2), Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_34wv2"]
+_data = {
+"RESET": SubResource("Animation_7ynfg"),
+"idle": SubResource("Animation_fs3kh")
+}
+
+[node name="health_pack" type="Area2D"]
+script = ExtResource("1_8vw1d")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_ppefb")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w5iai")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_34wv2")
+}
+autoplay = "idle"
+
+[node name="onscreen" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="onscreen" to="." method="_on_onscreen_screen_exited"]

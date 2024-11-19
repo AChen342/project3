@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2j5dfx00u2sh"
-path="res://.godot/imported/pilot_dead.png-1d5259e7dba9bedfd208b657585098d9.ctex"
+uid="uid://ccvlc3uf7crcd"
+path="res://.godot/imported/special_bar_under.png-d180522d5afa49ca1d61c87ba5c92bfd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/pilot_dead.png"
-dest_files=["res://.godot/imported/pilot_dead.png-1d5259e7dba9bedfd208b657585098d9.ctex"]
+source_file="res://Sprites/special/special_bar_under.png"
+dest_files=["res://.godot/imported/special_bar_under.png-d180522d5afa49ca1d61c87ba5c92bfd.ctex"]
 
 [params]
 

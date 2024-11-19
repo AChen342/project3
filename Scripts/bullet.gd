@@ -5,7 +5,7 @@ var speed : float
 var damage : float
 var rng : RandomNumberGenerator
 var direction : Vector2
-@onready var sharpnel = preload("res://Scenes/sharpnel.tscn")
+@onready var sharpnel = preload("res://Scenes/effects/sharpnel.tscn")
 @onready var screen_size = get_viewport_rect().size
 @onready var texture = $animation.get_sprite_frames().get_frame_texture("idle", 0)
 

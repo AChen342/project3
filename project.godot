@@ -13,7 +13,6 @@ config_version=5
 config/name="project3"
 run/main_scene="res://Scenes/test_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon=""
 
 [display]
 

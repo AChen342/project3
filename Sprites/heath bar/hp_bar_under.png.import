@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2j5dfx00u2sh"
-path="res://.godot/imported/pilot_dead.png-1d5259e7dba9bedfd208b657585098d9.ctex"
+uid="uid://c1w2g3kv1lv11"
+path="res://.godot/imported/hp_bar_under.png-1a4ee91dd2c5ce32e8fbc873c9a13646.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/pilot_dead.png"
-dest_files=["res://.godot/imported/pilot_dead.png-1d5259e7dba9bedfd208b657585098d9.ctex"]
+source_file="res://Sprites/heath bar/hp_bar_under.png"
+dest_files=["res://.godot/imported/hp_bar_under.png-1a4ee91dd2c5ce32e8fbc873c9a13646.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://6us0otwfb78w"]
 
-[ext_resource type="Script" path="res://Scripts/sharpnel.gd" id="1_v83wi"]
+[ext_resource type="Script" path="res://Scripts/effect.gd" id="1_fcqsa"]
 
 [sub_resource type="Gradient" id="Gradient_kn2xi"]
 colors = PackedColorArray(0.843137, 1, 0.658824, 1, 1, 0.129412, 0.054902, 1)
@@ -26,6 +26,6 @@ amount = 10
 process_material = SubResource("ParticleProcessMaterial_m24g3")
 one_shot = true
 explosiveness = 1.0
-script = ExtResource("1_v83wi")
+script = ExtResource("1_fcqsa")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

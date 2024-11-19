@@ -1,5 +1,6 @@
 extends CharacterBody2D
 const SPEED = 300.0
+const MAX_HEALTH = 100
 var screen_size
 var health : float
 @onready var gui = get_parent().get_node("user_interface").get_node("gui")
@@ -7,7 +8,7 @@ var health : float
 @onready var bullet_scene = preload("res://Scenes/player_bullet.tscn")
 
 func _init() -> void:
-	health = 100
+	health = MAX_HEALTH
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -16,9 +17,9 @@ func _ready() -> void:
 	$gun/cooldown.start()
 
 func _physics_process(delta: float) -> void:
-	player_controls(delta)
+	Engine.time_scale = .2
+	player_controls(delta / Engine.time_scale)
 	if health <= 0:
-		gui.emit_signal("pilot_death")
 		on_destroy()
 
 func on_destroy():
@@ -81,8 +82,18 @@ func player_movement(delta):
 	
 func _on_cooldown_timeout() -> void:
 	player_shoot()
-	
+
 func player_damage(damage):
 	gui.emit_signal("shake_pilot")
 	health -= damage
+	gui.emit_signal("update_player_health", health)
 	print_debug("Player health %d" % health)
+
+func player_heal(heal_amount):
+	var new_health = health + heal_amount
+	if new_health > MAX_HEALTH:
+		health = MAX_HEALTH
+	else:
+		health = new_health
+	
+	gui.emit_signal("update_player_health", health)
