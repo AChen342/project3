@@ -1,11 +1,12 @@
 extends Path2D
 
+const DEFAULT_WAITTIME = 3
 signal update_weights
 signal unlock_new_enemy(enemy_name)
 var rng : RandomNumberGenerator
 @onready var enemies = {
 		"enemy_jet" : {"spawnable" : true, "scene" : preload("res://Scenes/enemy_jet.tscn"), "weight" : 100},
-		"blue_drone" : {"spawnable" : false, "scene" : preload("res://Scenes/blue_drone.tscn"), "weight" : 50},
+		"blue_drone" : {"spawnable" : false, "scene" : preload("res://Scenes/drone.tscn"), "weight" : 50},
 		"red_drone" : {"spawnable" : false,"scene" : preload("res://Scenes/red_drone.tscn"), "weight" : 50},
 		"red_plane" : {"spawnable": false, "scene" : preload("res://Scenes/red_plane.tscn"), "weight" : 25}
 }
@@ -14,7 +15,7 @@ func _init() -> void:
 	rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
-	$spawn_timer.wait_time = 4
+	$spawn_timer.wait_time = DEFAULT_WAITTIME
 	_spawn_wave()
 
 func _on_spawn_timer_timeout() -> void:
@@ -32,7 +33,6 @@ func _calculate_total_weights():
 
 # called on after every x amount of points. This makes it so that a new enemy type becomes spawnable
 func _make_spawnable(enemy_name):
-	print_debug("unlocking " + str(enemy_name))
 	enemies[enemy_name]["spawnable"] = true
 
 # called on after every x amount of points. Increases chances of enemy type spawning

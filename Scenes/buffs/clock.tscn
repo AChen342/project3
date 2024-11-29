@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://c3i1dx0df1up8"]
+
+[ext_resource type="Texture2D" uid="uid://do3a7r62rky6i" path="res://Sprites/buffs/clock.png" id="1_vb2pn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8px6p"]
+atlas = ExtResource("1_vb2pn")
+region = Rect2(0, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow0u3"]
+atlas = ExtResource("1_vb2pn")
+region = Rect2(63, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rwf0"]
+atlas = ExtResource("1_vb2pn")
+region = Rect2(126, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0ywy"]
+atlas = ExtResource("1_vb2pn")
+region = Rect2(189, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42h8i"]
+atlas = ExtResource("1_vb2pn")
+region = Rect2(252, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au0ch"]
+atlas = ExtResource("1_vb2pn")
+region = Rect2(315, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86f3s"]
+atlas = ExtResource("1_vb2pn")
+region = Rect2(378, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4710l"]
+atlas = ExtResource("1_vb2pn")
+region = Rect2(441, 0, 63, 63)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sktw8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8px6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow0u3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rwf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0ywy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42h8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au0ch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86f3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4710l")
+}],
+"loop": true,
+"name": &"wind",
+"speed": 16.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2itni"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(32, -16, 1)
+gravity = Vector3(0, -98, 0)
+scale_min = 5.0
+scale_max = 5.0
+color = Color(1, 0.933333, 0, 1)
+
+[node name="clock" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_sktw8")
+animation = &"wind"
+autoplay = "wind"
+frame_progress = 0.526863
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_2itni")
+trail_enabled = true

@@ -8,7 +8,7 @@ var x_direction : float
 var rng = RandomNumberGenerator.new()
 var points = 100
 var collision_damage = 10
-@onready var explosion_animation = preload("res://Scenes/explosion.tscn")
+@onready var explosion = preload("res://Scenes/effects/death_particle.tscn")
 @onready var collectible_list = {
 	"health_pack" : preload("res://Scenes/collectibles/health_pack.tscn")
 }
@@ -48,13 +48,13 @@ func _movement(delta):
 
 func _on_destroy():
 	# generate explosion effect
-	var explode = explosion_animation.instantiate()
+	var explode = explosion.instantiate()
 	explode.global_position = global_position
 	get_parent().add_child(explode)
 
 	#drop health pack
-	var roll_item = rng.randf_range(0, 1)
-	if roll_item <= .1:
+	var roll_item = rng.randf_range(0, 100)
+	if roll_item <= 1:
 		var health_pack = collectible_list["health_pack"].instantiate()
 		health_pack.global_position = global_position
 		get_parent().add_child(health_pack)

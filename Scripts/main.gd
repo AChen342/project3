@@ -29,16 +29,13 @@ func _unlock_new_enemy():
 		match num_enemies_unlocked:
 			1:
 				spawner.emit_signal("unlock_new_enemy", "blue_drone")
-				print("blue_drone unlocked")
 			2:
 				spawner.emit_signal("unlock_new_enemy", "red_drone")
-				print("red_drone unlocked")
 			3:
 				spawner.emit_signal("unlock_new_enemy", "red_plane")
-				print("red_plane unlocked")
 			
 			MAX_ENEMY_TYPES:
-				print("All enemies unlocked!")
+				all_enemies_unlocked = true
 
 func _check_difficulty():
 	var points_to_difficulty = floor(float(total_points)/increase_difficulty_interval)

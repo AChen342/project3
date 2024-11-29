@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3kmetiafoa50"]
+
+[ext_resource type="Script" path="res://Scripts/chain.gd" id="1_n0m1y"]
+
+[sub_resource type="Curve" id="Curve_ikynk"]
+_data = [Vector2(0.205263, 0.758242), 0.0, 0.0, 0, 0, Vector2(1, 0.175824), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="snake" type="Node2D"]
+script = ExtResource("1_n0m1y")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0)
+width = 100.0
+width_curve = SubResource("Curve_ikynk")
+default_color = Color(1, 1, 1, 0)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="target" type="Marker2D" parent="."]
+
+[node name="switchTarget" type="Timer" parent="."]
