@@ -4,10 +4,18 @@ extends CharacterBody2D
 var speed: float
 var health: float
 var direction: Vector2
+var x_direction : float
+var rng = RandomNumberGenerator.new()
 var points = 100
 var collision_damage = 10
-@onready var explosion_animation = preload("res://Scenes/explosion.tscn")
+@onready var explosion = preload("res://Scenes/effects/death_particle.tscn")
+@onready var collectible_list = {
+	"health_pack" : preload("res://Scenes/collectibles/health_pack.tscn")
+}
 @onready var screen_size = get_viewport_rect().size
+
+func _init() -> void:
+	x_direction = 0
 
 func _process(delta: float) -> void:
 	var texture_size = _get_texture_size()
@@ -15,7 +23,10 @@ func _process(delta: float) -> void:
 	if health <= 0:
 		get_parent().emit_signal("add_points", points)
 		_on_destroy()
-	
+
+	# Prevents enemy from going off screen in x axis
+	position.x = clamp(position.x, texture_size.x, screen_size.x - texture_size.x)
+	# destroy enemy if off screen in y axis
 	if position.y >= (screen_size.y + texture_size.y):
 		queue_free()
 	
@@ -33,11 +44,22 @@ func take_damage(damage):
 # default movement for enemies
 func _movement(delta):
 	global_position += direction * speed * delta
+	global_position.x += x_direction * speed * delta
 
 func _on_destroy():
-	var explode = explosion_animation.instantiate()
+	# generate explosion effect
+	var explode = explosion.instantiate()
 	explode.global_position = global_position
 	get_parent().add_child(explode)
+
+	#drop health pack
+	var roll_item = rng.randf_range(0, 100)
+	if roll_item <= 1:
+		var health_pack = collectible_list["health_pack"].instantiate()
+		health_pack.global_position = global_position
+		get_parent().add_child(health_pack)
+
+	# free enemy
 	queue_free()
 
 func _on_collision(delta):

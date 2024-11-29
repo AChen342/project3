@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbcocds87hxl5"
-path="res://.godot/imported/bullet.png-6b56c7898a9b46a3c3db58585f0f8e0d.ctex"
+uid="uid://blavg3lgmbh25"
+path="res://.godot/imported/special_bar_progress.png-68405b5e5aa303792539ce6899ede576.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-6b56c7898a9b46a3c3db58585f0f8e0d.ctex"]
+source_file="res://Sprites/special/special_bar_progress.png"
+dest_files=["res://.godot/imported/special_bar_progress.png-68405b5e5aa303792539ce6899ede576.ctex"]
 
 [params]
 

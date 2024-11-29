@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgi6qtnmiyp1c"]
+
+[sub_resource type="Gradient" id="Gradient_v8ceo"]
+colors = PackedColorArray(0.317647, 0, 1, 1, 0.8, 0.415686, 0.682353, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5chb5"]
+gradient = SubResource("Gradient_v8ceo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l8e5q"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(32, 32, 1)
+gravity = Vector3(0, 98, 0)
+scale_min = 3.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_5chb5")
+
+[node name="debuff" type="GPUParticles2D"]
+process_material = SubResource("ParticleProcessMaterial_l8e5q")
+trail_enabled = true

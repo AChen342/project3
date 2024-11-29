@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbcocds87hxl5"
-path="res://.godot/imported/bullet.png-6b56c7898a9b46a3c3db58585f0f8e0d.ctex"
+uid="uid://drrpo6sumqkt6"
+path="res://.godot/imported/drone1.png-d7d639bfa830915edd667c084e4da4bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-6b56c7898a9b46a3c3db58585f0f8e0d.ctex"]
+source_file="res://Sprites/drone1.png"
+dest_files=["res://.godot/imported/drone1.png-d7d639bfa830915edd667c084e4da4bd.ctex"]
 
 [params]
 

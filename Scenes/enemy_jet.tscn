@@ -25,8 +25,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vyjqq"]
-radius = 15.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1042w"]
+radius = 24.0
+height = 64.0
 
 [node name="enemy_jet" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_o8mwc")
@@ -40,5 +41,10 @@ sprite_frames = SubResource("SpriteFrames_8udqi")
 animation = &"idle"
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-10, 1)
 rotation = 1.5708
-shape = SubResource("CircleShape2D_vyjqq")
+shape = SubResource("CapsuleShape2D_1042w")
+
+[node name="wanderTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="wanderTimer" to="." method="_on_wander_timer_timeout"]

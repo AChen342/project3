@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://fdrd2mqfv1it"]
+
+[ext_resource type="Texture2D" uid="uid://c4hwbmmjqe36d" path="res://Sprites/effects/heal_effect.png" id="1_8afbe"]
+[ext_resource type="Script" path="res://Scripts/effect.gd" id="2_13rtj"]
+
+[sub_resource type="Gradient" id="Gradient_pa2ml"]
+colors = PackedColorArray(1, 1, 1, 1, 0.28, 0.532, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vfp15"]
+gradient = SubResource("Gradient_pa2ml")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_px1fl"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 16, 0)
+emission_shape_scale = Vector3(64, 4, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+radial_velocity_min = -10.0
+radial_velocity_max = 9.99998
+gravity = Vector3(0, -98, 0)
+radial_accel_min = -100.0
+radial_accel_max = 100.0
+scale_min = 0.2
+color_ramp = SubResource("GradientTexture1D_vfp15")
+
+[node name="heal_effect" type="GPUParticles2D"]
+texture_filter = 1
+scale = Vector2(1.80307, 2.05485)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_px1fl")
+texture = ExtResource("1_8afbe")
+one_shot = true
+randomness = 1.0
+script = ExtResource("2_13rtj")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

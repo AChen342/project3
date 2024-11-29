@@ -1,8 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://bisqse8cu3j0"]
+[gd_scene load_steps=17 format=3 uid="uid://bisqse8cu3j0"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ju4pd"]
-[ext_resource type="Texture2D" uid="uid://bvhepwj2ghl8" path="res://Sprites/player.png" id="2_ym1t7"]
-[ext_resource type="Shader" path="res://Shader/flash.gdshader" id="3_ve7r4"]
+[ext_resource type="Texture2D" uid="uid://bvhepwj2ghl8" path="res://Sprites/player.png" id="2_cs2bj"]
 
 [sub_resource type="Shader" id="Shader_rqp4f"]
 code = "shader_type canvas_item;
@@ -21,51 +20,63 @@ shader = SubResource("Shader_rqp4f")
 shader_parameter/flash_color = Color(0.956863, 0, 0, 1)
 shader_parameter/flash_value = null
 
+[sub_resource type="Shader" id="Shader_msdge"]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : source_color;
+uniform float flash_value : hint_range(0.0, 1.0, 0.1);
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	COLOR = mix(texture_color, flash_color, flash_value);
+	COLOR.a = texture_color.a;
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_06a2l"]
-shader = ExtResource("3_ve7r4")
+shader = SubResource("Shader_msdge")
 shader_parameter/flash_color = null
 shader_parameter/flash_value = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5uuxp"]
-atlas = ExtResource("2_ym1t7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt8c5"]
+atlas = ExtResource("2_cs2bj")
 region = Rect2(192, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4vtlv"]
-atlas = ExtResource("2_ym1t7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbkju"]
+atlas = ExtResource("2_cs2bj")
 region = Rect2(224, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6inqu"]
-atlas = ExtResource("2_ym1t7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwcxs"]
+atlas = ExtResource("2_cs2bj")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2lhbm"]
-atlas = ExtResource("2_ym1t7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei2lh"]
+atlas = ExtResource("2_cs2bj")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_whm88"]
-atlas = ExtResource("2_ym1t7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybbpe"]
+atlas = ExtResource("2_cs2bj")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6cq1x"]
-atlas = ExtResource("2_ym1t7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcps2"]
+atlas = ExtResource("2_cs2bj")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_31haw"]
-atlas = ExtResource("2_ym1t7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib83g"]
+atlas = ExtResource("2_cs2bj")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dq0lt"]
-atlas = ExtResource("2_ym1t7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6acv"]
+atlas = ExtResource("2_cs2bj")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yt7gj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5uuxp")
+"texture": SubResource("AtlasTexture_wt8c5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4vtlv")
+"texture": SubResource("AtlasTexture_jbkju")
 }],
 "loop": true,
 "name": &"down",
@@ -73,10 +84,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6inqu")
+"texture": SubResource("AtlasTexture_vwcxs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2lhbm")
+"texture": SubResource("AtlasTexture_ei2lh")
 }],
 "loop": true,
 "name": &"idle",
@@ -84,10 +95,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_whm88")
+"texture": SubResource("AtlasTexture_ybbpe")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6cq1x")
+"texture": SubResource("AtlasTexture_xcps2")
 }],
 "loop": true,
 "name": &"move",
@@ -95,76 +106,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_31haw")
+"texture": SubResource("AtlasTexture_ib83g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dq0lt")
+"texture": SubResource("AtlasTexture_v6acv")
 }],
 "loop": true,
 "name": &"up",
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_spvu8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ry8n8"]
-resource_name = "player_hurt"
-length = 1.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(10, 0), Vector2(-10, 0), Vector2(0, 0), Vector2(10, 0), Vector2(-10, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_78315"]
-_data = {
-"RESET": SubResource("Animation_spvu8"),
-"player_hurt": SubResource("Animation_ry8n8")
-}
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pubd1"]
+radius = 18.0
+height = 58.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 material = SubResource("ShaderMaterial_5dhnw")
@@ -181,16 +135,19 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_06a2l")
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_yt7gj")
-animation = &"down"
-frame_progress = 0.75843
+animation = &"up"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="animation"]
-libraries = {
-"": SubResource("AnimationLibrary_78315")
-}
-
-[node name="hitbox" type="CollisionPolygon2D" parent="."]
+[node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
-polygon = PackedVector2Array(-2, -22, -13, -4, -22, 2, -31, 14, -28, 26, -4, 20, -1, 20, 23, 26, 26, 14, 17, 2, 8, -4)
+shape = SubResource("CapsuleShape2D_pubd1")
 
+[node name="special_duration" type="Timer" parent="."]
+one_shot = true
+
+[node name="backlash_duration" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="special_mode" from="." to="." method="_on_special_mode"]
 [connection signal="timeout" from="gun/cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="special_duration" to="." method="_on_special_duration_timeout"]
+[connection signal="timeout" from="backlash_duration" to="." method="_start_backlash_timer"]

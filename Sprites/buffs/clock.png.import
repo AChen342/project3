@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbcocds87hxl5"
-path="res://.godot/imported/bullet.png-6b56c7898a9b46a3c3db58585f0f8e0d.ctex"
+uid="uid://do3a7r62rky6i"
+path="res://.godot/imported/clock.png-2d0841b69c5b05bcf19ca6fea001d49e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-6b56c7898a9b46a3c3db58585f0f8e0d.ctex"]
+source_file="res://Sprites/buffs/clock.png"
+dest_files=["res://.godot/imported/clock.png-2d0841b69c5b05bcf19ca6fea001d49e.ctex"]
 
 [params]
 

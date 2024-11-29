@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbplladu3xmg4"]
+[gd_scene load_steps=7 format=3 uid="uid://bbplladu3xmg4"]
 
 [ext_resource type="Texture2D" uid="uid://dhnkygkiydnv4" path="res://Sprites/red-drone.png" id="1_qif2k"]
 [ext_resource type="Script" path="res://Scripts/red_drone.gd" id="1_rk3kp"]
@@ -25,11 +25,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_203gi"]
-size = Vector2(24, 24)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hyqp0"]
-radius = 164.368
+[sub_resource type="CircleShape2D" id="CircleShape2D_byduj"]
+radius = 14.0357
 
 [node name="red_drone" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_rk3kp")
@@ -41,12 +38,4 @@ sprite_frames = SubResource("SpriteFrames_7tv7n")
 animation = &"idle"
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_203gi")
-
-[node name="detection" type="Area2D" parent="." groups=["enemies"]]
-
-[node name="detection_range" type="CollisionShape2D" parent="detection"]
-shape = SubResource("CircleShape2D_hyqp0")
-
-[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
-[connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
+shape = SubResource("CircleShape2D_byduj")

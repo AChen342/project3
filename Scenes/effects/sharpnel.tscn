@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://6us0otwfb78w"]
+
+[ext_resource type="Script" path="res://Scripts/effect.gd" id="1_fcqsa"]
+
+[sub_resource type="Gradient" id="Gradient_kn2xi"]
+colors = PackedColorArray(1, 0.172549, 0.564706, 1, 1, 0.0392157, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ti7i1"]
+gradient = SubResource("Gradient_kn2xi")
+
+[sub_resource type="Curve" id="Curve_xdk2j"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k2uaj"]
+curve = SubResource("Curve_xdk2j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m24g3"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 0.01
+angle_min = 1.07288e-05
+angle_max = 5.00001
+spread = 90.0
+initial_velocity_min = 200.0
+initial_velocity_max = 500.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 0.499984
+gravity = Vector3(0, 98, 0)
+scale_min = 2.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_k2uaj")
+color_ramp = SubResource("GradientTexture1D_ti7i1")
+
+[node name="sharpnel" type="GPUParticles2D"]
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_m24g3")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+script = ExtResource("1_fcqsa")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
