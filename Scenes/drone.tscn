@@ -1,37 +1,31 @@
 [gd_scene load_steps=8 format=3 uid="uid://ck1e2spk37f14"]
 
 [ext_resource type="Script" path="res://Scripts/drone.gd" id="1_fa5ce"]
-[ext_resource type="Texture2D" uid="uid://drrpo6sumqkt6" path="res://Sprites/drone1.png" id="2_1bb3x"]
+[ext_resource type="Texture2D" uid="uid://b8urbnypso80d" path="res://Sprites/drone.png" id="2_jc5h0"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3i7ae"]
-atlas = ExtResource("2_1bb3x")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpme3"]
+atlas = ExtResource("2_jc5h0")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_72hu6"]
-atlas = ExtResource("2_1bb3x")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh6m5"]
+atlas = ExtResource("2_jc5h0")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rthbf"]
-atlas = ExtResource("2_1bb3x")
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq8x6"]
+atlas = ExtResource("2_jc5h0")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_brnmc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3i7ae")
+"texture": SubResource("AtlasTexture_xpme3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_72hu6")
+"texture": SubResource("AtlasTexture_hh6m5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rthbf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_72hu6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3i7ae")
+"texture": SubResource("AtlasTexture_wq8x6")
 }],
 "loop": true,
 "name": &"idle",
@@ -39,17 +33,17 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4iq7s"]
-radius = 19.2354
+radius = 12.0
 
 [node name="drone" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_fa5ce")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_brnmc")
 animation = &"idle"
-frame_progress = 0.798485
+frame_progress = 0.346155
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4iq7s")
