@@ -34,7 +34,7 @@ color_ramp = SubResource("GradientTexture1D_4ytsf")
 
 [node name="death_particle" type="GPUParticles2D"]
 emitting = false
-amount = 50
+amount = 32
 process_material = SubResource("ParticleProcessMaterial_aq50d")
 one_shot = true
 explosiveness = 1.0

@@ -8,7 +8,7 @@ var x_direction : float
 var rng = RandomNumberGenerator.new()
 var points = 100
 var collision_damage = 10
-@onready var explosion = preload("res://Scenes/effects/death_particle.tscn")
+@onready var explosion = preload("res://Scenes/effects/explosion.tscn")
 @onready var collectible_list = {
 	"health_pack" : preload("res://Scenes/collectibles/health_pack.tscn")
 }
